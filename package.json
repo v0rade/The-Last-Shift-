@@ -1,0 +1,27 @@
+{
+  "name": "the-last-shift",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "THE LAST SHIFT - First-Person 3D Psychological Survival Horror Game",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/three": "^0.170.0",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.5"
+  }
+}

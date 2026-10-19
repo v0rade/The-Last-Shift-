@@ -1,0 +1,92 @@
+:root {
+  --bg-deep: #050709;
+  --bg-panel: rgba(11, 16, 21, 0.92);
+  --bg-panel-solid: #0d1319;
+  --border-muted: rgba(88, 120, 140, 0.32);
+  --border-accent: #38b2ac;
+  --text-primary: #e6eff5;
+  --text-secondary: #9cb2c2;
+  --accent-cyan: #4fd1c5;
+  --accent-amber: #f6ad55;
+  --accent-red: #fc5c65;
+  --accent-green: #48bb78;
+  --font-sans: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+#canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+}
+
+.postfx-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vignette-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 68%,
+    rgba(2, 5, 9, 0.24) 88%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+}
+
+.grain-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.damage-flash-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(180, 15, 15, 0.45) 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+#ui-root {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}

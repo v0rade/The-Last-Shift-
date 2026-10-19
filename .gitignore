@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build output
+dist
+dist-ssr
+*.local
+
+# Testing & logs
+test-results
+playwright-report
+blob-report
+playwright/.cache
+coverage
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor & OS files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+
+# Gemini / Scratch logs
+.system_generated

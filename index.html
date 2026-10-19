@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE LAST SHIFT — Aether-9 Research Facility</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23050709'/><circle cx='16' cy='16' r='8' fill='%23fc5c65'/></svg>" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <link rel="stylesheet" href="/src/styles/menu.css" />
+    <link rel="stylesheet" href="/src/styles/hud.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="canvas-container" aria-label="3D Game Viewport"></div>
+      <div id="postfx-overlay" class="postfx-overlay">
+        <div class="vignette-layer" id="vignette-layer"></div>
+        <div class="grain-layer" id="grain-layer"></div>
+        <div class="damage-flash-layer" id="damage-flash-layer"></div>
+      </div>
+      <div id="ui-root"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

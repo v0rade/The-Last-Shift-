@@ -1,73 +1,329 @@
-# THE LAST SHIFT
+# 🔦 THE LAST SHIFT
 
-**First-Person 3D Psychological Survival Horror Prototype**  
-Built with **Vite**, **TypeScript**, **Three.js (WebGL)**, **Web Audio API**, **Vitest**, and **Playwright**.
+<div align="center">
 
----
+![Version](https://img.shields.io/badge/version-1.0.0-teal?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=for-the-badge&logo=typescript)
+![Three.js](https://img.shields.io/badge/Three.js-r170-black?style=for-the-badge&logo=three.dot.js)
+![WebGL](https://img.shields.io/badge/WebGL-2.0%20PBR-orange?style=for-the-badge&logo=webgl)
+![Web Audio](https://img.shields.io/badge/Web%20Audio-Procedural%20Synthesis-purple?style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite)
+![Playwright](https://img.shields.io/badge/Playwright-E2E%20Tested-green?style=for-the-badge&logo=playwright)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-## 1. Premise & Gameplay Overview
+**A complete, browser-native 3D first-person psychological survival horror game prototype.**  
+*Runs entirely in any modern desktop web browser without external plugins or backend servers.*
 
-You are Night Shift Security Officer **Hale** at the **Aether-9 Nocturnal Biomedical Research Wing**. At **2:13 AM**, the primary substation fails, the exterior quarantine blast doors seal, and **Subject 09 ("The Resonant")** breaches Containment Pod 09.
+[🎮 Live Demo on Vercel](#-deployment-guide) • [🕹️ Controls](#-operator-controls) • [📖 Story & Lore](#-facility-lore--premise) • [🧩 Puzzles](#-interactive-puzzles) • [🛠️ Architecture](#-project-architecture) • [🚀 Getting Started](#-getting-started--local-development)
 
-To survive and escape the facility:
-1. Explore the **Reception & Security Desk** using your flashlight (`F`) and read the Night Shift Directive.
-2. Search the **Medical Examination Room** (West) for the **Basement Maintenance Key** and the **Storage Room** (East) for the **200A Replacement High-Amp Fuse** and **Glass Acoustic Decoys**.
-3. Unlock the **Basement Service Corridor** and reach the **Electrical Maintenance Room**.
-4. Solve **Puzzle A (Electrical Voltage Routing)** by seating the replacement fuse and routing **Circuit A1 (45V)** + **Circuit C3 (75V)** to match the **120V** target load.
-5. Enter the newly unlocked **Research Laboratory**, recover the **Level-2 Research Access Card**, and inspect the Lab Workstation & Dr. Vance's memo to discover the Security Office PIN (`2413`).
-6. Evade **Subject 09** using crouched movement (`Ctrl`), steel hiding lockers (`E`), and thrown glass sound decoys (`G`).
-7. Unlock the **North Security Office** via **Puzzle B (Keypad PIN `2413`)**, collect CSO Mercer's **Master Override Keycard**, and decrypt the Security Command Terminal for the Final Lockdown Purge Code (`7904`).
-8. Reach the **Final Quarantine Exit Area**, authorize both keycards and enter Purge Code `7904` (**Puzzle C**), and evacuate through the Exterior Airlock Hatch.
-
----
-
-## 2. Controls
-
-| Input | Action |
-| :--- | :--- |
-| `W` / `A` / `S` / `D` | Move Forward / Strafe Left / Backward / Strafe Right |
-| `Mouse` (or `Arrow Keys`) | First-Person Look |
-| `Shift` | Sprint (Drains Stamina, High Acoustic Noise) |
-| `Ctrl` / `C` | Crouch (Hold or Toggle in Settings, Low Acoustic Noise) |
-| `E` | Interact / Pick Up Item / Open Door / Hide in Locker |
-| `F` | Toggle Flashlight |
-| `G` | Throw Glass Sound Decoy |
-| `R` | Reload Last Saved Checkpoint |
-| `Esc` | Pause Game / Close Modal Panel |
+</div>
 
 ---
 
-## 3. Installation & Commands
+## 📌 Overview
 
-```bash
-# Install dependencies
-npm install
+**THE LAST SHIFT** is a 20–30 minute browser survival horror experience built from the ground up using **Three.js**, **TypeScript**, and the **Web Audio API**. 
 
-# Start development server (http://localhost:5173)
-npm run dev
+Set inside an isolated subterranean biomedical research facility, the game delivers atmospheric exploration, physics-based contact lighting, sound-based hunting AI, mechanical puzzles, and environmental storytelling with zero pre-rendered cutscenes.
 
-# Run TypeScript type-checking
-npm run typecheck
+> **Target Experience**: Seamless desktop browser gameplay with immediate loading, responsive mouse-look first-person controls, procedural sound synthesis, and checkpoint autosaves.
 
-# Build production static bundle (dist/)
-npm run build
+---
 
-# Preview production build locally (http://localhost:4173)
-npm run preview
+## 🩸 Facility Lore & Premise
 
-# Run unit and integration tests (Vitest)
-npm test
+```
+FACILITY LOG // SECTOR B-09 // AETHER-9 BIOMEDICAL RESEARCH WING
+TIMESTAMP: OCTOBER 18 — 02:13:09 AM
+STATUS: CRITICAL SUBSTATION FAILURE DETECTED // CONTAINMENT COMPROMISED
+```
 
-# Run browser end-to-end tests (Playwright)
-npm run test:e2e
+You are Night Shift Security Officer **Hale**. At **02:13 AM**, a catastrophic power surge trips Substation B-09, locking all emergency quarantine blast doors and plunging the subterranean complex into darkness.
+
+Moments later, reinforced acrylic inside Containment Pod 09 shatters. **Subject 09 ("The Resonant")**—a bio-engineered nocturnal specimen that hunts strictly through acoustic resonance and light perception—is loose in the corridors.
+
+To escape the facility alive, you must:
+1. Navigate the dark corridors using your tactical flashlight.
+2. Restore the emergency 120V substation power grid.
+3. Decrypt the research staff's terminal logs to recover quarantine override credentials.
+4. Survive an unscripted, acoustic-driven entity using stealth, hiding lockers, and sound decoys.
+5. Initiate the airlock purge sequence and escape through the exterior blast hatch.
+
+---
+
+## ✨ Key Features
+
+### 🎮 Gameplay & AI Systems
+* **Acoustic-Driven Hunting AI ("Subject 09")**:
+  - Dynamically responds to sound levels generated by the player:
+    - **Crouching (`Ctrl` / `C`)**: Ultra-quiet profile ($\approx 1.8\text{m}$ radius).
+    - **Walking (`WASD`)**: Standard corridor footsteps ($\approx 6.5\text{m}$ radius).
+    - **Sprinting (`Shift`)**: Heavy acoustic reverberation ($\approx 14.5\text{m}$ radius).
+    - **Decoys (`G`)**: Shattering glass acoustic distraction ($\approx 22.0\text{m}$ radius).
+  - 6-state finite state machine: `IDLE` $\rightarrow$ `PATROL` $\rightarrow$ `INVESTIGATE` $\rightarrow$ `CHASE` $\rightarrow$ `SEARCH` $\rightarrow$ `COOLDOWN`.
+  - Line-of-sight raycasting through doorways, with occlusion by walls and closed doors.
+* **Stealth & Hiding Mechanics**:
+  - Enter full-height steel lockers (`E`) to break line-of-sight and reduce acoustic footprint to zero.
+  - Peek through ventilation louvers while monitoring creature footsteps.
+* **Flashlight Management**:
+  - Dynamic battery depletion with audible toggle clicks and low-battery warning flicker.
+  - Emergency reserve dynamo glow ensuring players are never left in unnavigable blackouts.
+  - In-game malfunction triggers during scripted psychological tension events.
+
+### 🎨 3D Graphics & Visual Overhaul
+* **Custom PBR Material Pipeline**:
+  - Procedural $512\times512$ sRGB color textures paired with linear height/bump maps (`THREE.NoColorSpace`).
+  - World-space UV mapping on walls, floors, and ceilings—eliminating texture stretching across long corridors.
+  - Anisotropic texture filtering up to $16\times$ for oblique surface clarity.
+* **Cinematic Lighting & Tone Mapping**:
+  - `THREE.ACESFilmicToneMapping` with calibrated exposure for deep contrast and filmic shadows.
+  - Troffer fluorescent fixtures with standby emergency glow, realistic inverse-square decay, and contact shadows.
+  - Dual-cone tactical spotlight beam with $1024\times1024$ PCF soft shadows and ambient bounce fill.
+* **Lightweight Post-Processing Stack**:
+  - `UnrealBloomPass` with high threshold ($0.88$) tuned strictly for emissive LED indicators and terminal screens.
+  - Custom `CinematicHorrorShader` computing subtle teal/amber grade, shadow floor lift, and sub-pixel animated film grain.
+  - Hardware-accelerated `FXAAShader` anti-aliasing with automatic software-rasterizer bypass (SwiftShader/CI friendly).
+* **Scalable Performance Presets**:
+  - In-game **Low**, **Medium**, and **High** presets with capped pixel ratios ($1.0\times - 1.25\times$) preventing 4K fill-rate bottlenecks on laptop GPUs.
+
+### 🎵 Procedural Horror Audio Synthesis
+* **Original Main Menu Theme**:
+  - Generated in real-time using the **Web Audio API** (zero external MP3/WAV assets required).
+  - Minimalist psychological motif in **D-Phrygian / Diminished** with slow detuned sub-drones ($36.7\text{ Hz}$ / $55.0\text{ Hz}$), randomized felt-piano notes, stereo delay/reverb feedback, reversed metallic swells, and sub-bass impacts.
+* **Dynamic Tension Soundscape**:
+  - Procedural ventilation airflow, electrical humming, randomized distant pipe knocks, and pitch-shifting tension oscillators that ramp up as Subject 09 draws near.
+* **Independent Audio Controls**:
+  - Dedicated gain buses with sliders for **Master**, **Music**, **Ambience**, and **Sound Effects**.
+  - **Reduce Intense Sound Effects** mode for hearing sensitivity.
+  - Seamless state crossfading (`MENU` $\rightarrow$ `PLAYING` $\rightarrow$ `PAUSED` $\rightarrow$ `GAME_OVER` $\rightarrow$ `VICTORY`).
+
+---
+
+## 🕹️ Operator Controls
+
+| Key / Input | Action | Tactical Description |
+| :--- | :--- | :--- |
+| <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> | **Movement** | Navigate corridors (Forward, Strafe Left, Backward, Strafe Right) |
+| <kbd>Mouse</kbd> / <kbd>Arrows</kbd> | **Camera Look** | First-person pitch and yaw (click canvas to engage Pointer Lock) |
+| <kbd>Shift</kbd> | **Sprint** | Fast movement; drains stamina and generates loud footsteps |
+| <kbd>Ctrl</kbd> / <kbd>C</kbd> | **Crouch** | Quiet stealth movement; lowers eye-line and profile (Hold/Toggle) |
+| <kbd>E</kbd> | **Interact** | Open doors, collect items, examine terminals, enter/exit lockers |
+| <kbd>F</kbd> | **Flashlight** | Toggle tactical flashlight beam (alerts creature if shone directly) |
+| <kbd>G</kbd> | **Throw Decoy** | Hurls a glass bottle toward cursor to lure the monster away |
+| <kbd>R</kbd> | **Reload Checkpoint** | Restores the latest saved checkpoint |
+| <kbd>Esc</kbd> | **Pause / Close** | Pauses gameplay or exits notes, terminals, and puzzle panels |
+
+---
+
+## 🧩 Interactive Puzzles
+
+The game features 3 distinct mechanical progression puzzles integrated into the 3D world:
+
+### ⚡ Puzzle A: Electrical Voltage Routing (Substation B-09)
+* **Objective**: Balance the backup generator circuit breakers to exactly **120V** without overloading the bus.
+* **Mechanism**: 
+  - Locate and seat the **200A Replacement High-Amp Fuse** in the East Storage Room.
+  - Configure the 4 breaker switches:
+    - Circuit A1: $+45\text{V}$ (Primary Corridor & Bio-Lab)
+    - Circuit B2: $+30\text{V}$ (Cryo-Compressor Array — Faulty)
+    - Circuit C3: $+75\text{V}$ (Security Grid & Mag-Lock Relay)
+    - Circuit D4: $+50\text{V}$ (Incinerator Line)
+  - Solution: **A1 ($45\text{V}$) + C3 ($75\text{V}$) = $120\text{V}$**.
+
+### 🔢 Puzzle B: Armored Security Door Keypad (Sector B-09)
+* **Objective**: Decrypt the 4-digit security PIN to access the North Security Office.
+* **Mechanism**: Inspect Dr. Vance's lab workstation memo and blood-stained log to piece together the PIN: **`2413`**.
+
+### 🚪 Puzzle C: Quarantine Airlock Override Console
+* **Objective**: Authorize dual-keycard clearance and initiate the airlock purge cycle.
+* **Mechanism**: 
+  - Insert the **Level-2 Research Card** (Lab Table) and **Master Override Keycard** (CSO Desk).
+  - Enter Lockdown Purge Code **`7904`** (recovered from the encrypted Security Terminal).
+  - Evacuate through the exterior airlock hatch before Subject 09 breaches the perimeter.
+
+---
+
+## 🏢 Facility Map & Progression Route
+
+```
+[Exterior Quarantine Airlock] (EXIT)
+              │
+    [North Exit Corridor]
+     ├── [North Security Office] ◄── (Keypad PIN 2413 / Master Card)
+     └── [Research Laboratory]   ◄── (Subject 09 Origin / Level-2 Card)
+              │
+    [Central Junction Corridor]
+     ├── [Medical Examination Room] ◄── (Basement Key)
+     └── [East Storage Room]        ◄── (200A Fuse / Glass Decoys)
+              │
+    [Basement Service Corridor]
+              │
+  [Electrical Substation B-09] ◄── (120V Breaker Routing Puzzle)
+              │
+    [Reception & Security Desk] (SPAWN)
 ```
 
 ---
 
-## 4. Static Hosting Deployment
+## 📂 Project Architecture
 
-The production bundle (`npm run build`) outputs a self-contained static site into `dist/` with relative asset paths (`base: './'`):
-- **Vercel / Netlify / Cloudflare Pages / GitHub Pages**:
-  - Build command: `npm run build`
-  - Output directory: `dist`
-  - No backend or environment variables required.
+```
+the-last-shift/
+├── index.html                   # HTML entry point with UI root & canvas container
+├── package.json                 # Dependencies & build scripts
+├── tsconfig.json                # Strict TypeScript configuration
+├── vite.config.ts               # Vite configuration (relative paths, glsl support)
+├── playwright.config.ts         # Playwright E2E browser test runner configuration
+├── src/
+│   ├── main.ts                  # Application bootstrap & lifecycle initializer
+│   ├── audio/
+│   │   ├── AudioManager.ts      # Web Audio context, gain buses, 3D spatial listeners, SFX
+│   │   └── AmbienceController.ts# Procedural D-Phrygian horror theme, drone & tension synthesis
+│   ├── enemy/
+│   │   ├── Monster.ts           # 3D creature mesh & rig assembly
+│   │   ├── MonsterAI.ts         # Finite state machine (Patrol, Investigate, Chase, Search)
+│   │   ├── MonsterNavigation.ts # NavGraph waypoint steering, raycast collision avoidance
+│   │   └── MonsterPerception.ts # Vision cones, flashlight detection, acoustic hearing radius
+│   ├── game/
+│   │   ├── AssetManager.ts      # Procedural 512px PBR texture & material synthesizer
+│   │   ├── Game.ts              # Central game orchestrator & event bus coordinator
+│   │   ├── GameConfig.ts        # Presets, speeds, voltages, flashlight & AI parameters
+│   │   ├── GameLoop.ts          # Delta-time requestAnimationFrame loop
+│   │   ├── GameState.ts         # State manager (MENU, PLAYING, PAUSED, GAME_OVER, VICTORY)
+│   │   └── SceneManager.ts      # Three.js WebGLRenderer, EffectComposer, tone mapping & shaders
+│   ├── interaction/
+│   │   ├── Collectible.ts       # Keys, fuses, access cards, batteries, decoys
+│   │   ├── ComputerTerminal.ts  # Multi-entry interactive CRT terminals with audio logs
+│   │   ├── HidingSpot.ts        # Steel locker hide/exit logic & camera transitions
+│   │   └── InteractionManager.ts# Raycast interaction detection & trigger dispatch
+│   ├── persistence/
+│   │   ├── SaveManager.ts       # Checkpoint progression serialization to localStorage
+│   │   └── SettingsManager.ts   # Persistent settings (graphics, volumes, mouse sensitivity)
+│   ├── player/
+│   │   ├── Flashlight.ts        # Handheld spotlight, battery drain, malfunction events
+│   │   ├── PlayerCamera.ts      # Pointer lock, head bob, trauma shake, camera recoil
+│   │   ├── PlayerController.ts  # WASD kinematic physics, crouch, sprint, stamina, audio triggers
+│   │   ├── PlayerInteraction.ts # Target acquisition & E-key prompt updates
+│   │   ├── PlayerInventory.ts   # Inventory system with stackable decoys & key items
+│   │   └── StaminaSystem.ts     # Sprint stamina drain, recovery thresholds, exhaustion
+│   ├── puzzles/
+│   │   ├── ExitSequence.ts      # Dual-card validation, purge PIN 7904, airlock timer
+│   │   ├── KeypadPuzzle.ts      # 4-digit interactive keypad (PIN 2413)
+│   │   └── PowerPuzzle.ts       # 120V circuit balancing & breaker engagement
+│   ├── story/
+│   │   ├── Documents.ts         # Lore documents, research memos, patient autopsy logs
+│   │   ├── NarrativeManager.ts  # Document discovery tracking & audio log playback
+│   │   ├── ObjectiveManager.ts  # Dynamic objective progression evaluator
+│   │   └── ScareDirector.ts     # Distance & event-triggered psychological scares
+│   ├── styles/
+│   │   ├── hud.css              # Objective banner, reticle, stamina bar, threat indicator
+│   │   ├── main.css             # Root reset, layout, vignette & post-FX overlays
+│   │   └── menu.css             # Main menu, settings modal, note viewer, keypad & terminals
+│   ├── tests/
+│   │   ├── unit/                # Vitest unit tests for AI, puzzles, inventory, audio, settings
+│   │   ├── integration/         # Progression milestone integration tests
+│   │   └── e2e/                 # Full Playwright browser walkthrough to victory screen
+│   └── world/
+│       ├── CollisionWorld.ts    # 3D AABB sliding collision solver
+│       ├── Door.ts              # Sliding security doors with LED indicator status
+│       ├── Environment.ts       # Procedural props (beds, desks, lockers, pods, signs, pipes)
+│       ├── LevelBuilder.ts      # Master architectural compiler for the 9 facility rooms
+│       ├── Lighting.ts          # Ceiling troffer fixtures, emergency flickers, ambient fill
+│       ├── NavigationGraph.ts   # AI patrol node waypoints & path connectivity
+│       └── Room.ts              # World-space UV room slabs, baseboards, chair-rails, grilles
+```
+
+---
+
+## 🚀 Getting Started & Local Development
+
+### Prerequisites
+* **Node.js**: v18.0.0 or higher
+* **npm**: v9.0.0 or higher
+* A modern desktop web browser supporting **WebGL 2.0** and the **Pointer Lock API** (Chrome, Edge, Firefox, Brave, Safari 16.4+).
+
+### Quick Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/v0rade/The-Last-Shift-.git
+
+# 2. Enter project directory
+cd The-Last-Shift-
+
+# 3. Install dependencies
+npm install
+
+# 4. Start local development server
+npm run dev
+```
+
+Open your browser and navigate to: **`http://localhost:5173/`**
+
+---
+
+## 🧪 Testing & Verification
+
+The project includes unit, integration, and full end-to-end browser verification suites:
+
+```bash
+# Run TypeScript compilation checks
+npm run typecheck
+
+# Run Vitest unit & integration test suites (19 tests)
+npm test
+
+# Run Playwright End-to-End browser walkthrough
+# (Automates new game, settings adjustments, all 3 puzzles, and victory escape)
+npm run test:e2e
+
+# Build the production bundle
+npm run build
+
+# Preview the production build locally
+npm run preview
+```
+
+---
+
+## 🌐 Deployment Guide
+
+### Deploying to Vercel (Recommended)
+This game is a 100% client-side static web application with relative asset paths. It deploys out-of-the-box on Vercel:
+
+1. Log into your [Vercel Dashboard](https://vercel.com/).
+2. Click **"Add New..."** $\rightarrow$ **"Project"**.
+3. Import the repository **`v0rade/The-Last-Shift-`**.
+4. Vercel will automatically detect the **Vite** preset:
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install`
+5. Click **"Deploy"**. Your game will be live with full HTTPS in $\approx 30$ seconds.
+
+### Deploying to GitHub Pages
+```bash
+npm run build
+# The dist/ directory is ready to be served on GitHub Pages or any static CDN
+```
+
+---
+
+## ⚙️ Performance Tuning Tips
+
+If running on an older laptop or low-powered integrated GPU (iGPU):
+1. Open the in-game **SETTINGS** menu (accessible via Main Menu or pressing <kbd>Esc</kbd>).
+2. Set **Graphics Quality** to **Medium** or **Low**:
+   - **Medium**: Disables bloom while preserving dynamic shadows and fast FXAA anti-aliasing (recommended for 60 FPS on standard hardware).
+   - **Low**: Disables shadows and post-processing; reduces internal render scale to $0.9\times$ for maximum framerate.
+
+---
+
+## 📜 License & Credits
+
+* **Developer & Architect**: [v0rade](https://github.com/v0rade)
+* **3D Engine**: [Three.js](https://threejs.org/) (MIT)
+* **Build System**: [Vite](https://vitejs.dev/) (MIT)
+* **Testing Frameworks**: [Vitest](https://vitest.dev/) & [Playwright](https://playwright.dev/)
+
+Released under the **[MIT License](LICENSE)**. Feel free to fork, modify, and build upon this prototype!

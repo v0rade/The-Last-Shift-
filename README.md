@@ -10,11 +10,12 @@
 ![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite)
 ![Playwright](https://img.shields.io/badge/Playwright-E2E%20Tested-green?style=for-the-badge&logo=playwright)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+[![Play Demo](https://img.shields.io/badge/🎮%20PLAY%20DEMO-the--last--shift--omega.vercel.app-00dfa2?style=for-the-badge&logo=vercel)](https://the-last-shift-omega.vercel.app/)
 
 **A complete, browser-native 3D first-person psychological survival horror game prototype.**  
 *Runs entirely in any modern desktop web browser without external plugins or backend servers.*
 
-[🎮 Live Demo on Vercel](#-deployment-guide) • [🕹️ Controls](#-operator-controls) • [📖 Story & Lore](#-facility-lore--premise) • [🧩 Puzzles](#-interactive-puzzles) • [🛠️ Architecture](#-project-architecture) • [🚀 Getting Started](#-getting-started--local-development)
+[🎮 **Play Live Demo**](https://the-last-shift-omega.vercel.app/) • [🕹️ Controls](#-operator-controls) • [📖 Story & Lore](#-facility-lore--premise) • [🧩 Puzzles](#-interactive-puzzles) • [🛠️ Architecture](#-project-architecture) • [🚀 Getting Started](#-getting-started--local-development)
 
 </div>
 
@@ -288,7 +289,11 @@ npm run preview
 
 ## 🌐 Deployment Guide
 
-### Deploying to Vercel (Recommended)
+### 🚀 Live Production URL
+The game is deployed and playable directly in the browser:  
+👉 **[https://the-last-shift-omega.vercel.app/](https://the-last-shift-omega.vercel.app/)**
+
+### Deploying to Vercel (Self-Hosting / Fork)
 This game is a 100% client-side static web application with relative asset paths. It deploys out-of-the-box on Vercel:
 
 1. Log into your [Vercel Dashboard](https://vercel.com/).
